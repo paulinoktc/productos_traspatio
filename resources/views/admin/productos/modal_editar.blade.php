@@ -5,7 +5,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Editar Producto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-bs-label="Close">
-                    
+
                 </button>
             </div>
             <div class="modal-body">
@@ -28,8 +28,19 @@
                     <div class="form-group">
                         <label style="color: rgb(43, 137, 226);" for="cosechas">Cosechas Esperadas</label>
                         <input class="form-control" name="cosechas" id="cosechas" type="number"
-                            placeholder="Escribe Cosechas Anuales" required="true" aria-required="true" min="0" 
-                            value="{{$item->cosechas}}"/>
+                            placeholder="Escribe Cosechas Anuales" required="true" aria-required="true" min="0"
+                            value="{{ $item->cosechas }}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="categoria">Selecciona Comunidad</label>
+                        <select name="categoria" class="form-select" id="categoria">
+                            @foreach ($categorias as $items)
+                                <option @if ($item->categoria_id == $items->id) {{ 'selected' }} @endif
+                                    value="{{ $items->id }}">
+                                    {{ $items->categoria}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="modal-footer">

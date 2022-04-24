@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categoria;
 use App\Models\Um_produccion;
-use App\Models\Um_terreno;
 use Illuminate\Http\Request;
 
 class MedidasController extends Controller
@@ -17,10 +16,9 @@ class MedidasController extends Controller
      */
     public function index()
     {
-        $ums_terreno=Um_terreno::all();
         $ums_produccion=Um_produccion::all();
         $categorias=Categoria::all();
-        return view('admin.medidas.medidas',compact('ums_terreno','ums_produccion','categorias'));
+        return view('admin.medidas.medidas',compact('ums_produccion','categorias'));
     }
 
     /**

@@ -18,6 +18,9 @@ class CreateProductos extends Migration
             $table->string('nombre');
             $table->double('precio_kg');
             $table->integer('cosechas');
+            $table->bigInteger('categoria_id')->unsigned();
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

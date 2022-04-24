@@ -8,69 +8,6 @@
         </div>
         <div class="container-fluid">
             <div class="row">
-
-                <div class="col-lg-6 col-md-12">
-                    <div class="card">
-                        @if (session('terreno') == 'ok')
-                            <div class="alert alert-success" role="alert">
-                                Terreno Creado Correctamente!
-                            </div>
-                        @endif
-
-                        <div class="card-header card-header-primary">
-                            <h4 class="card-title ">Terreno</h4>
-                            <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#um_m_terreno">
-                                Nuevo
-                            </a>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table  class="table table-striped table-hover">
-                                    <thead class=" text-primary">
-                                        <th>
-                                            ID
-                                        </th>
-                                        <th>
-                                            UNIDAD DE MEDIDA
-                                        </th>
-                                        <th>
-                                            EDITAR
-                                        </th>
-
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($ums_terreno as $item)
-                                            <tr>
-                                                <td>
-                                                    {{ $item->id }}
-                                                </td>
-                                                <td>
-                                                    {{ $item->unidad_medida }}
-
-                                                </td>
-                                                <td>
-                                                    <div class="btn-group" role="group" aria-bs-label="Basic example">
-                                                        <a href="" class="btn btn-warning" data-bs-toggle="modal"
-                                                            data-bs-target="#modal-e-terreno{{ $item->id }}">Editar</a>
-                                                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                                            data-bs-target="#modal-d-terreno{{ $item->id }}">Eliminar</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            @include('admin.medidas.edit_terreno')
-                                            @include('admin.medidas.delete_terreno')
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
                         @if (session('municipio') == 'ok')
@@ -90,7 +27,7 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table  class="table table-striped table-hover">
+                                <table class="table table-striped table-hover">
                                     <thead class=" text-primary">
                                         <th>
                                             ID
@@ -139,83 +76,78 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="card">
+                        @if (session('comunidad') == 'ok')
+                            <div class="alert alert-success" role="alert">
+                                Creado Correctamente!
+                            </div>
+                        @endif
 
-
-            <div class="col-lg-6 col-md-12">
-                <div class="card">
-                    @if (session('comunidad') == 'ok')
-                        <div class="alert alert-success" role="alert">
-                            Creado Correctamente!
-                        </div>
-                    @endif
-
-                    <div class="card-header card-header-info">
-                        <h4 class="card-title ">Producción</h4>
-                        <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#um_m_produccion">
-                            Nuevo
-                        </a>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="table" class="table table-striped table-hover">
-                                <thead class=" text-primary">
-                                    <th>
-                                        ID
-                                    </th>
-                                    <th>
-                                        UNIDAD DE MEDIDA
-                                    </th>
-                                    <th>
-                                        Editar
-                                    </th>
-                                </thead>
-                                <tbody>
-                                    @foreach ($ums_produccion as $item)
-                                        <tr>
-                                            <td>
-                                                {{ $item->id }}
-                                            </td>
-                                            <td>
-                                                {{ $item->unidad_medida }}
-                                            </td>
-
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="" class="btn btn-warning" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-e-produccion{{ $item->id }}">Editar</a>
-                                                    <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-d-produccion{{ $item->id }}">Eliminar</button>
-                                                </div>
-
-                                                @include(
-                                                    'admin.medidas.edit_produccion'
-                                                )
-                                                @include(
-                                                    'admin.medidas.delete_produccion'
-                                                )
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title ">Producción</h4>
+                            <a type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#um_m_produccion">
+                                Nuevo
+                            </a>
                         </div>
 
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="table" class="table table-striped table-hover">
+                                    <thead class=" text-primary">
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            UNIDAD DE MEDIDA
+                                        </th>
+                                        <th>
+                                            Editar
+                                        </th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($ums_produccion as $item)
+                                            <tr>
+                                                <td>
+                                                    {{ $item->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->unidad_medida }}
+                                                </td>
+
+                                                <td>
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="" class="btn btn-warning" data-bs-toggle="modal"
+                                                            data-bs-target="#modal-e-produccion{{ $item->id }}">Editar</a>
+                                                        <button type="submit" class="btn btn-danger" data-bs-toggle="modal"
+                                                            data-bs-target="#modal-d-produccion{{ $item->id }}">Eliminar</button>
+                                                    </div>
+
+                                                    @include(
+                                                        'admin.medidas.edit_produccion'
+                                                    )
+                                                    @include(
+                                                        'admin.medidas.delete_produccion'
+                                                    )
+
+                                                </td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
+
             </div>
-
-
         </div>
     </div>
 
-    @include('admin.modal.new_um_terreno')
     @include('admin.modal.um_produccion')
     @include('admin.modal.new_categoria')
 

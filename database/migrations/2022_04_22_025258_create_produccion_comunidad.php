@@ -17,7 +17,6 @@ class CreateProduccionComunidad extends Migration
             $table->id();
             $table->string('folio');
             $table->bigInteger('comunidad_id')->unsigned();
-            $table->bigInteger('categoria_id')->unsigned();
             $table->bigInteger('producto_id')->unsigned();
             $table->double('cantidad_produccion');
             $table->bigInteger('um_produccion_id')->unsigned();
@@ -35,10 +34,9 @@ class CreateProduccionComunidad extends Migration
             $table->double('total_desperdicio');
             $table->double('total_venta');
             $table->foreign('comunidad_id')->references('id')->on('comunidades')->onDelete('cascade');
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('productos')->onDelete('cascade');
             $table->foreign('um_produccion_id')->references('id')->on('um_produccion')->onDelete('cascade');
-            $table->foreign('um_terreno_id')->references('id')->on('um_terreno')->onDelete('cascade');
+            $table->foreign('um_terreno_id')->references('id')->on('um_produccion')->onDelete('cascade');
         });
     }
 

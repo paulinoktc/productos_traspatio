@@ -35,7 +35,6 @@ class HomeController extends Controller
         $productos = Producto::orderBy('nombre')->get();
 
         $um_produccion = Um_produccion::orderBy('unidad_medida')->get();
-        $um_terreno = Um_terreno::orderBy('unidad_medida')->get();
 
         $c_comunidades = count($comunidades);
 
@@ -51,7 +50,6 @@ class HomeController extends Controller
             'categorias',
             'productos',
             'um_produccion',
-            'um_terreno',
             'registros',
             's_comunidad',
             's_municipio',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        $productos = Producto::all();
-        return view('admin.productos.productos', compact('productos'));
+        $productos = Producto::orderBy('nombre')->get();
+        $categorias = Categoria::orderBy('categoria')->get();
+        return view('admin.productos.productos', compact('productos', 'categorias'));
     }
 
     /**
@@ -40,7 +42,8 @@ class ProductoController extends Controller
         Producto::create([
             'nombre' => $request->producto,
             'precio_kg' => $request->precio_kg,
-            'cosechas' => $request->cosechas
+            'cosechas' => $request->cosechas,
+            'categoria_id' => $request->categoria
         ]);
         return redirect()->route('productos.index')->with('registro', 'ok');
     }
@@ -80,6 +83,7 @@ class ProductoController extends Controller
         $producto->nombre = $request->producto;
         $producto->precio_kg = $request->precio_kg;
         $producto->cosechas = $request->cosechas;
+        $producto->categoria_id = $request->categoria;
         $producto->save();
         return redirect()->route('productos.index');
     }
