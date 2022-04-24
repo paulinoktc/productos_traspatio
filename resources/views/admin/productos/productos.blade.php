@@ -30,21 +30,19 @@
                             <div class="table-responsive text-center">
                                 <table id="table" class="table table-striped table-hover" >
                                     <thead class=" text-primary">
-                                        <th>ID</th>
                                         <th>PRODUCTO</th>
                                         <th style="width: 100px">PRECIO POR KG</th>
                                         <th style="width: 100px">COSECHAS ESPERADAS</th>
-                                        <th>DETALLES</th>
-
+                                        <th>CATEGORIA</th>
+                                        <th>OPCIONES</th>
                                     </thead>
                                     <tbody>
                                         @foreach ($productos as $item)
                                             <tr>
-                                                <td>{{ $item->id }} </td>
-
                                                 <td class="text-primary">{{ $item->nombre }} </td>
                                                 <td>{{ $item->precio_kg }} </td>
                                                 <td>{{ $item->cosechas }} </td>
+                                                <td>{{ $item->categoria->categoria }}</td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
 

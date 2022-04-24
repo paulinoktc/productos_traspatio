@@ -50,9 +50,6 @@ class Produccion_comunidad extends Model
     {
         return $this->belongsTo(Um_produccion::class);
     }
-    public function categoria()
-    {
-        return $this->belongsTo(Categoria::class);
-    }
+    
     
 }

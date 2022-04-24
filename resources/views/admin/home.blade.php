@@ -170,12 +170,7 @@
                                                     <td>{{ $item->cantidad_produccion }}</td>
                                                     <td>{{ $item->um_produccion->unidad_medida }}</td>
                                                     <td>{{ $item->cantidad_terreno }}</td>
-                                                    @if ($item->um_terreno == null)
-                                                        <td>no def</td>
-                                                    @else
-                                                        <td>{{ $item->um_terreno->unidad_medida }}</td>
-                                                    @endif
-
+                                                    
                                                     <td>{{ $item->equivalencia_kg }} kg</td>
                                                     <td>{{ $item->aprox_kg }} kg</td>
                                                     <td>{{ $item->aprox_toneladas }}</td>

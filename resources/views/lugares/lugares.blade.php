@@ -29,9 +29,6 @@
                         <table  class="table table-striped table-hover">
                             <thead class=" text-primary">
                                 <th>
-                                    ID
-                                </th>
-                                <th>
                                     Nombre
                                 </th>
                                 <th>
@@ -42,7 +39,6 @@
                             <tbody>
                                 @foreach ($municipios as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->nombre }}</td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -88,7 +84,6 @@
                     <div class="table-responsive">
                         <table id="table" class="table table-striped table-hover">
                             <thead class=" text-primary">
-                                <th>ID</th>
                                 <th>Municipio</th>
                                 <th>Comunidad</th>
                                 <th>Opciones</th>
@@ -96,9 +91,7 @@
                             <tbody>
                                 @foreach ($comunidades as $itemc)
                                     <tr>
-                                        <td>
-                                            {{ $itemc->id }}
-                                        </td>
+                                        
                                         <td>
                                             {{ $itemc->municipio->nombre }}
                                         </td>

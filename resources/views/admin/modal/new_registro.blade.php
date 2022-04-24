@@ -79,7 +79,7 @@
                     <div class="form-group">
                         <label for="um_terreno">Selecciona Unidad de Medida Terreno</label>
                         <select name="um_terreno" class="form-select" id="um_terreno">
-                            @foreach ($um_terreno as $items)
+                            @foreach ($um_produccion as $items)
                                 <option value="{{ $items->id }}">
                                     {{ $items->unidad_medida }}</option>
                             @endforeach

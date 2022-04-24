@@ -33,11 +33,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__ . '/auth.php';
 
-
+Route::resource('registro', HomeController::class)->names('registro');
 Route::resource('inicio', AdminController::class)->names('inicio');
 Route::resource('municipio', MunicipioController::class)->names('municipio');
 Route::resource('comunidad', ComunidadController::class)->names('comunidad');
-Route::resource('registro', HomeController::class)->names('registro');
 Route::resource('medidas', MedidasController::class)->names('medidas');
 Route::resource('um_terreno', UmTerrenoController::class)->names('um_terreno');
 Route::resource('um_produccion', UmProduccionController::class)->names('um_produccion');
