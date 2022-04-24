@@ -25,7 +25,7 @@
                                 <td>$</td>
                                 <td style="width: 400px">
                                     <input class="form-control" name="precio_kg" id="precio_kg" type="number"
-                                        placeholder="Escrine Precio" required="true" aria-required="true" min="0"
+                                        placeholder="Escribe Precio" required="true" aria-required="true" min="0"
                                         step="any" />
                                 </td>
                             </tr>
