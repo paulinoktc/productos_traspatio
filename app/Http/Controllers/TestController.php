@@ -7,6 +7,7 @@ use App\Models\Comunidad;
 use App\Models\Municipio;
 use App\Models\Produccion_comunidad;
 use App\Models\Producto;
+use App\Models\Um_produccion;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -18,6 +19,9 @@ class TestController extends Controller
      */
     public function index()
     {
+        return Um_produccion::where('unidad_medida', 'LIKE', '%rollo%')->max('id');
+
+        return 'hi';
         $municipio = 2;
         $productos = Producto::all(); // find(23);
         $data = null;

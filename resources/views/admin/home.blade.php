@@ -85,7 +85,7 @@
                                                 Categoria
                                             </label>
                                             <select name="s_categoria" id="s_categoria" class="form-select"
-                                                aria-label="Default select example">
+                                                aria-label="Default select example" onchange="filtrar()">
                                                 <option value="0">Todo</option>
                                                 @foreach ($categorias as $item)
                                                     <option value="{{ $item->id }}">{{ $item->categoria }}</option>
@@ -158,19 +158,17 @@
                                                             </svg>
 
                                                         </a>
-                                                        @include(
-                                                            'admin.modal.edit_registro'
-                                                        )
+                                                        @include('admin.modal.edit_registro')
                                                     </td>
                                                     <td>{{ $item->comunidad->municipio->nombre }}</td>
                                                     <td>{{ $item->folio }}</td>
                                                     <td>{{ $item->comunidad->nombre }}</td>
-                                                    <td>{{ $item->categoria->categoria }}</td>
+                                                    <td>{{ $item->producto->categoria->categoria }}</td>
                                                     <td>{{ $item->producto->nombre }}</td>
                                                     <td>{{ $item->cantidad_produccion }}</td>
                                                     <td>{{ $item->um_produccion->unidad_medida }}</td>
                                                     <td>{{ $item->cantidad_terreno }}</td>
-                                                    
+
                                                     <td>{{ $item->equivalencia_kg }} kg</td>
                                                     <td>{{ $item->aprox_kg }} kg</td>
                                                     <td>{{ $item->aprox_toneladas }}</td>
@@ -194,9 +192,7 @@
                                                                     d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                                                             </svg>
                                                         </a>
-                                                        @include(
-                                                            'admin.modal.delete_registro'
-                                                        )
+                                                        @include('admin.modal.delete_registro')
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -286,6 +282,44 @@
 
     }
 
+    function filtrar() {
+        var productos = @json($productos);
+        var select = document.getElementById('s_categoria');
+        var select_producto = document.getElementById('s_producto');
+        var contador = 0;
+        for (let index = 0; index < productos.length; index++) {
+            if (productos[index]['categoria_id'] == select.value) {
+                contador++;
+            }
+        }
+
+        if (select.value == 0) {
+            select_producto.length = productos.length + 1;
+            select_producto.options[0].text = 'Todos';
+            select_producto.options[0].value = '0';
+            var indice = 0;
+            for (let index = 0; index < productos.length; index++) {
+                select_producto.options[indice + 1].text = productos[index]['nombre'];
+                select_producto.options[indice + 1].value = productos[index]['id'];
+                indice++;
+            }
+        } else {
+            select_producto.length = contador + 1;
+            select_producto.options[0].text = 'Todos';
+            select_producto.options[0].value = '0';
+            var indice = 0;
+            for (let index = 0; index < productos.length; index++) {
+                if (productos[index]['categoria_id'] == select.value) {
+                    select_producto.options[indice + 1].text = productos[index]['nombre'];
+                    select_producto.options[indice + 1].value = productos[index]['id'];
+                    indice++;
+                }
+            }
+        }
+        select_producto.value = 0;
+
+    }
+
     function selectElement() {
 
         var s_comunidad = @json($s_comunidad);
@@ -302,6 +336,7 @@
         seleccion.value = s_comunidad;
         select_categoria.value = s_categoria;
         select_producto.value = s_producto;
+        filtrar();
     }
     $(document).ready(function() {
         cambiar();

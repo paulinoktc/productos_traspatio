@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MunicipioController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\Admin\UmProduccionController;
 use App\Http\Controllers\Admin\UmTerrenoController;
+use App\Http\Controllers\TestController;
 use App\Models\Comunidad;
 
 /*
@@ -47,3 +48,5 @@ Route::post('importRegistros', [HomeController::class, 'importRegister'])->name(
 
 Route::put('buscarx', [HomeController::class, 'buscarPor'])->name('buscarx');
 Route::put('filtrarcomunidades',[HomeController::class,'filtraComunidades'])->name('filtrarcomunidades');
+
+Route::resource('test',TestController::class)->names('test');

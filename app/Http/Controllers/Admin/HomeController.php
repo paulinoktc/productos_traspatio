@@ -38,11 +38,9 @@ class HomeController extends Controller
 
         $c_comunidades = count($comunidades);
 
-        $registros = Produccion_comunidad::where('comunidad_id', $s_comunidad)
-            ->join('comunidades', 'comunidades.id', '=', 'produccion_comunidad.comunidad_id')
-            ->where('comunidades.municipio_id', $s_municipio)
-            ->orderBy('cantidad_produccion', 'desc')
-            ->get();
+        $registros = Produccion_comunidad::where('comunidad_id', $s_comunidad);
+        // ->orderBy('cantidad_produccion', 'desc')
+        //->get();
 
         return view('admin.home', compact(
             'municipios',
@@ -109,6 +107,13 @@ class HomeController extends Controller
         return redirect()->route('registro.index');
     }
 
+    /**
+     * Buscar por filtra
+     * Municipio
+     * Comuidad
+     * Categoria
+     * producto
+     */
     public function buscarPor(Request $request)
     {
         $s_municipio = $request->s_municipio;
@@ -122,20 +127,36 @@ class HomeController extends Controller
         $productos = Producto::orderBy('nombre')->get();
 
         $um_produccion = Um_produccion::orderBy('unidad_medida')->get();
-        $um_terreno = Um_terreno::orderBy('unidad_medida')->get();
 
         $c_comunidades = count($comunidades);
-        
-        return Categoria::find($s_categoria);
 
+        //$registros = Produccion_comunidad::where('comunidad_id', $s_comunidad)
+        //->where('categoria_id',$request->s_categoria)
+        //  ->join('comunidades', 'comunidades.id', '=', 'produccion_comunidad.comunidad_id')
+        // ->where('comunidades.municipio_id', $s_municipio)
+        //->join('productos','productos.id','=','produccion_comunidad.producto_id')
+        //->orderBy('cantidad_produccion', 'desc')
+        //->get();
 
-        $registros = Produccion_comunidad::where('comunidad_id', $s_comunidad)
-            //->where('categoria_id',$request->s_categoria)
-            ->join('comunidades', 'comunidades.id', '=', 'produccion_comunidad.comunidad_id')
-            ->where('comunidades.municipio_id', $s_municipio)
-            //->or
-            ->orderBy('cantidad_produccion', 'desc')
+        $registros = Produccion_comunidad::all();
+        $registros = Produccion_comunidad::join('comunidades', 'comunidades.id', '=', 'produccion_comunidad.comunidad_id')
+            ->join('productos', 'productos.id', '=', 'produccion_comunidad.producto_id')
             ->get();
+
+        $registros = $registros->where('municipio_id', $s_municipio);
+        //return $registros;
+
+        if ($s_comunidad != 0) {
+            $registros = $registros->where('comunidad_id', $s_comunidad);
+        }
+        if ($s_categoria != 0) {
+            $registros = $registros->where('categoria_id', $s_categoria);
+        }
+        if ($s_producto != 0) {
+            $registros = $registros->where('producto_id', $s_producto);
+        }
+
+
 
         return view('admin.home', compact(
             'municipios',
@@ -143,7 +164,6 @@ class HomeController extends Controller
             'categorias',
             'productos',
             'um_produccion',
-            'um_terreno',
             'registros',
             's_comunidad',
             's_municipio',
@@ -162,6 +182,7 @@ class HomeController extends Controller
      */
     public function filtraComunidades(Request $request)
     {
+
 
         $municipio = $request->municipio;
         $comunidad = $request->comunidad;
