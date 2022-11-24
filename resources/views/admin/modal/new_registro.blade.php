@@ -30,16 +30,6 @@
 
 
                     <div class="form-group">
-                        <label for="categoria">Selecciona Categoria</label>
-                        <select name="categoria" class="form-select" id="categoria">
-                            @foreach ($categorias as $items)
-                                <option value="{{ $items->id }}">
-                                    {{ $items->categoria }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label for="categoria">Selecciona Producto</label>
                         <select name="producto" class="form-select" id="categoria">
                             @foreach ($productos as $items)

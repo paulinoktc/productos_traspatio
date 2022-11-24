@@ -86,7 +86,7 @@ class HomeController extends Controller
         Produccion_comunidad::create([
             'folio' => $request->folio,
             'comunidad_id' => $request->comunidad,
-            'categoria_id' => $request->categoria,
+           // 'categoria_id' => $request->categoria,
             'producto_id' => $request->producto,
             'cantidad_produccion' => $request->cantidad_produccion,
             'um_produccion_id' => $request->um_produccion,
@@ -138,13 +138,40 @@ class HomeController extends Controller
         //->orderBy('cantidad_produccion', 'desc')
         //->get();
 
-        $registros = Produccion_comunidad::all();
-        $registros = Produccion_comunidad::join('comunidades', 'comunidades.id', '=', 'produccion_comunidad.comunidad_id')
+        //$registros = Produccion_comunidad::all();
+        /* */
+        $registros = Produccion_comunidad::select(
+            'produccion_comunidad.id',
+            'folio',
+            'comunidad_id',
+            'producto_id',
+            'cantidad_produccion',
+            'um_produccion_id',
+            'cantidad_terreno',
+            'um_terreno_id',
+            'equivalencia_kg',
+            'aprox_kg',
+            'aprox_toneladas',
+            'comentario',
+            'autoconsumo',
+            'desperdicio',
+            'venta',
+            'porcentaje_total',
+            'total_autoconsumo',
+            'total_desperdicio',
+            'total_venta',
+            'municipio_id',
+            'precio_kg',
+            'cosechas',
+            'categoria_id',
+        )
+            ->join('comunidades', 'comunidades.id', '=', 'produccion_comunidad.comunidad_id')
             ->join('productos', 'productos.id', '=', 'produccion_comunidad.producto_id')
+
             ->get();
 
+
         $registros = $registros->where('municipio_id', $s_municipio);
-        //return $registros;
 
         if ($s_comunidad != 0) {
             $registros = $registros->where('comunidad_id', $s_comunidad);
@@ -323,9 +350,10 @@ class HomeController extends Controller
 
         $registro = Produccion_comunidad::find($id);
 
+
         $registro->folio = $request->folio;
         $registro->comunidad_id = $request->comunidad;
-        $registro->categoria_id = $request->categoria;
+       // $registro->categoria_id = $request->categoria;
         $registro->producto_id = $request->producto;
         $registro->cantidad_produccion = $request->cantidad_produccion;
         $registro->um_produccion_id = $request->um_produccion;

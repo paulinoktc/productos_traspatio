@@ -44,7 +44,7 @@ class Produccion_comunidad extends Model
     }
     public function um_terreno()
     {
-        return $this->belongsTo(Um_terreno::class);
+        return $this->belongsTo(um_produccion::class);
     }
     public function um_produccion()
     {

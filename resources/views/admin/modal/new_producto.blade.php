@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="categoria">Selecciona Comunidad</label>
+                        <label for="categoria">Selecciona Categoria</label>
                         <select name="categoria" class="form-select" id="categoria">
                             @foreach ($categorias as $items)
                                 <option value="{{ $items->id }}">
